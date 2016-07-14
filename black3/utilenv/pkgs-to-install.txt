@@ -1,0 +1,8 @@
+#
+# List packages in order of installation
+#
+setuptools
+virtualenv
+passlib
+psycopg2
+tornado
