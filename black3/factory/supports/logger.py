@@ -4,7 +4,7 @@ import os
 
 #
 #use singleton later
-logger = None
+log = None
 
 #Don't call the function outside
 def get_logger_level():
@@ -12,8 +12,8 @@ def get_logger_level():
 
 #Don't call the function outside
 def init_logger():
-	if logger != None:
-		return logger
+	if log != None:
+		return log
 	debug_level = get_logger_level()
 	logfile = os.path.join(LOGGER_DIR, 'black3.log')
 	logging.basicConfig(filename = logfile,level = debug_level, filemode = 'a', format = '%(asctime)s - %(levelname)s: %(message)s')

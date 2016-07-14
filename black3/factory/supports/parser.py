@@ -3,12 +3,12 @@
 """
 *in case using other parsers to replace BeautifulSoup
 """
-
+from logger import log
 try:
 	from bs4 import BeautifulSoup
 	pass
 except Exception, e:
-	logger.logger_error("Did not find BeautifulSoup")
+	log.logger_error("Did not find BeautifulSoup")
 	raise e
 
 class parser(BeautifulSoup):

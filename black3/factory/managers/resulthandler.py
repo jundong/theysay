@@ -36,7 +36,7 @@ class resulthandler(threading.Thread):
 			dockeys = store.keys()
 			for key in dockeys:
 				substr = key.split('!')
-				if substr[-1] != 'RESULT' || len(substr) < 3:
+				if substr[-1] != 'RESULT' or len(substr) < 3:
 					continue
 				result = self.mdb.popdoc(key)
 				taskid = substr[-2]

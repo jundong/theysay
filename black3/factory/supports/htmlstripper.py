@@ -1,11 +1,12 @@
 #coding=utf-8
 
-from logger import logger
+from logger import log
 
 try:
     from bs4 import BeautifulSoup
 except ImportError:
-    raise DependencyNotInstalledError('BeautifulSoup4')
+    pass
+    #raise DependencyNotInstalledError('BeautifulSoup4')
 
 from HTMLParser import HTMLParser
 

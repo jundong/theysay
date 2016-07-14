@@ -1,9 +1,9 @@
 
 
 from external.bottle import Bottle, route, run, request
-from managers.weibomanager import weibofollowmanager
-from managers.weibomanager import weibominiblogmanager
-from supports.memdb import memdb
+from factory.managers.weibomanager import weibofollowmanager
+from factory.managers.weibomanager import weibominiblogmanager
+from factory.supports.memdb import memdb
 #from supports.singletonmaker import singleton
  
 
@@ -29,7 +29,7 @@ def start_weibo_work(task):
 		if task == "followers":			
 			wf = weibofollowmanager().start()
 			pass
-		elif task = "miniblog":
+		elif task == "miniblog":
 			wm = weibominiblogmanager().start()
 			pass
 	pass

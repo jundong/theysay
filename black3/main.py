@@ -15,10 +15,9 @@
 """
 from factory.supports.memdb import memdb
 
-'''
-from managers import messager
+
+from factory.managers import messager
 
 if __name__ == "__main__":
 	messager.start_server()
-'''
 	

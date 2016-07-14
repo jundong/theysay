@@ -96,7 +96,7 @@ class memdb(object):
 	def popdoc(self,name):
 		if name in self.store:
 			ctlist = self.store.pop[name]
-			return relist
+			return ctlist
 
 	def cleandoc(self,name):
 		if name in self.store:
