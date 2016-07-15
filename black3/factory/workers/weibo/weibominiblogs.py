@@ -79,7 +79,7 @@ class weibominiblogs(weibocommon):
 			mbcontent =  htmlstripper.strip_tags(str(content_div)).decode('utf-8')
 
 			mds = div.find_all("li",attrs={'action-type':'feed_list_media_vedio'})
-			mdconent = []
+			mdcontent = []
 			for md in mds:
 				data = md['action-data']
 				md_imgs = md.find_all('img')
@@ -97,7 +97,7 @@ class weibominiblogs(weibocommon):
 			retv_i['miniblog'] = mbcontent
 			retv_i['imgs'] = imgssrc
 			retv_i['timestamp'] = time_str
-			retv_i['media_info'] = mdconent
+			retv_i['media_info'] = mdcontent
 			if self.handler != None:
 				self.handler([retv_i])
 		if len(divs) < BLOG_NUM_PER_BLOCK:

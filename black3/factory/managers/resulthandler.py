@@ -21,9 +21,9 @@ class resulthandler(threading.Thread):
 
 	def send(self,uid,taskname, data):
 		httpdata = {
-		"uid": uid,
-		"tname":taskname,
-		"data": data
+            "uid": uid,
+            "tname":taskname,
+            "data": data
 		}
 		req = urllib2.Request(self.url, data=httpdata)
 		req.get_method = lambda: 'PUT'

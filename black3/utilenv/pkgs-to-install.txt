@@ -6,3 +6,14 @@ virtualenv
 passlib
 psycopg2
 tornado
+redis
+pybloom
+pybloomfiltermmap
+pybloomfilter
+rsa
+
+google
+CherryPy
+flup
+Cheetah
+gevent

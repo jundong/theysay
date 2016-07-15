@@ -6,7 +6,7 @@ import rootcfg
 import re
 import time
 from factory.supports.parser import parser
-from factory.supports.logger import logger
+from factory.supports.logger import log
 from rootcfg import FOLLOW_URL_PREFIX 
 from rootcfg import FOLLOW_URL_POSTFIX
 from rootcfg import HIS_FOLLOW_PREFIX
@@ -41,7 +41,7 @@ class weibofollowers(weibocommon):
 			if uid in self.baduids:
 				self.baduids[uid] += 1
 				if self.baduids[uid] > 5:
-					logger.logger_error("uid: %s cannot be parsed"%uid)
+					log.logger_error("uid: %s cannot be parsed"%uid)
 					if self.__check_baduid() == -1:
 						return
 			else:

@@ -544,7 +544,7 @@ class Route(object):
             to recover the original function before inspection. '''
         return getargspec(self.get_undecorated_callback())[0]
 
-    def get_config(key, default=None):
+    def get_config(self, key, default=None):
         ''' Lookup a config field and return its value, first checking the
             route.config, then route.app.config.'''
         for conf in (self.config, self.app.conifg):
@@ -2663,11 +2663,12 @@ class WaitressServer(ServerAdapter):
 
 class PasteServer(ServerAdapter):
     def run(self, handler): # pragma: no cover
-        from paste import httpserver
-        from paste.translogger import TransLogger
-        handler = TransLogger(handler, setup_console_handler=(not self.quiet))
-        httpserver.serve(handler, host=self.host, port=str(self.port),
-                         **self.options)
+        # from paste import httpserver
+        # from paste.translogger import TransLogger
+        # handler = TransLogger(handler, setup_console_handler=(not self.quiet))
+        # httpserver.serve(handler, host=self.host, port=str(self.port),
+        #                  **self.options)
+        pass
 
 
 class MeinheldServer(ServerAdapter):
@@ -2680,23 +2681,24 @@ class MeinheldServer(ServerAdapter):
 class FapwsServer(ServerAdapter):
     """ Extremely fast webserver using libev. See http://www.fapws.org/ """
     def run(self, handler): # pragma: no cover
-        import fapws._evwsgi as evwsgi
-        from fapws import base, config
-        port = self.port
-        if float(config.SERVER_IDENT[-2:]) > 0.4:
-            # fapws3 silently changed its API in 0.5
-            port = str(port)
-        evwsgi.start(self.host, port)
-        # fapws3 never releases the GIL. Complain upstream. I tried. No luck.
-        if 'BOTTLE_CHILD' in os.environ and not self.quiet:
-            _stderr("WARNING: Auto-reloading does not work with Fapws3.\n")
-            _stderr("         (Fapws3 breaks python thread support)\n")
-        evwsgi.set_base_module(base)
-        def app(environ, start_response):
-            environ['wsgi.multiprocess'] = False
-            return handler(environ, start_response)
-        evwsgi.wsgi_cb(('', app))
-        evwsgi.run()
+        # import fapws._evwsgi as evwsgi
+        # from fapws import base, config
+        # port = self.port
+        # if float(config.SERVER_IDENT[-2:]) > 0.4:
+        #     # fapws3 silently changed its API in 0.5
+        #     port = str(port)
+        # evwsgi.start(self.host, port)
+        # # fapws3 never releases the GIL. Complain upstream. I tried. No luck.
+        # if 'BOTTLE_CHILD' in os.environ and not self.quiet:
+        #     _stderr("WARNING: Auto-reloading does not work with Fapws3.\n")
+        #     _stderr("         (Fapws3 breaks python thread support)\n")
+        # evwsgi.set_base_module(base)
+        # def app(environ, start_response):
+        #     environ['wsgi.multiprocess'] = False
+        #     return handler(environ, start_response)
+        # evwsgi.wsgi_cb(('', app))
+        # evwsgi.run()
+        pass
 
 
 class TornadoServer(ServerAdapter):
@@ -2713,27 +2715,29 @@ class AppEngineServer(ServerAdapter):
     """ Adapter for Google App Engine. """
     quiet = True
     def run(self, handler):
-        from google.appengine.ext.webapp import util
-        # A main() function in the handler script enables 'App Caching'.
-        # Lets makes sure it is there. This _really_ improves performance.
-        module = sys.modules.get('__main__')
-        if module and not hasattr(module, 'main'):
-            module.main = lambda: util.run_wsgi_app(handler)
-        util.run_wsgi_app(handler)
+        # from google.appengine.ext.webapp import util
+        # # A main() function in the handler script enables 'App Caching'.
+        # # Lets makes sure it is there. This _really_ improves performance.
+        # module = sys.modules.get('__main__')
+        # if module and not hasattr(module, 'main'):
+        #     module.main = lambda: util.run_wsgi_app(handler)
+        # util.run_wsgi_app(handler)
+        pass
 
 
 class TwistedServer(ServerAdapter):
     """ Untested. """
     def run(self, handler):
-        from twisted.web import server, wsgi
-        from twisted.python.threadpool import ThreadPool
-        from twisted.internet import reactor
-        thread_pool = ThreadPool()
-        thread_pool.start()
-        reactor.addSystemEventTrigger('after', 'shutdown', thread_pool.stop)
-        factory = server.Site(wsgi.WSGIResource(reactor, thread_pool, handler))
-        reactor.listenTCP(self.port, factory, interface=self.host)
-        reactor.run()
+        # from twisted.web import server, wsgi
+        # from twisted.python.threadpool import ThreadPool
+        # from twisted.internet import reactor
+        # thread_pool = ThreadPool()
+        # thread_pool.start()
+        # reactor.addSystemEventTrigger('after', 'shutdown', thread_pool.stop)
+        # factory = server.Site(wsgi.WSGIResource(reactor, thread_pool, handler))
+        # reactor.listenTCP(self.port, factory, interface=self.host)
+        # reactor.run()
+        pass
 
 
 class DieselServer(ServerAdapter):
@@ -2803,8 +2807,9 @@ class RocketServer(ServerAdapter):
 class BjoernServer(ServerAdapter):
     """ Fast server written in C: https://github.com/jonashaag/bjoern """
     def run(self, handler):
-        from bjoern import run
-        run(handler, self.host, self.port)
+        # from bjoern import run
+        # run(handler, self.host, self.port)
+        pass
 
 
 class AutoServer(ServerAdapter):

@@ -57,14 +57,14 @@ class worker(object):
 			return -1
 		num = len(self.openers)
 		if num == 1:
-			if openers[0].get_status() == 1:
-				return openers[0]
+			if self.openers[0].get_status() == 1:
+				return self.openers[0]
 			else:
 				return -1
 		else:
 			index = random.randint(0,num-1)
 			if self.openers[index].get_status() == -1:
-				return openers[index]
+				return self.openers[index]
 			else:
 				for opener in self.openers:
 					if opener.get_status() == 1:
