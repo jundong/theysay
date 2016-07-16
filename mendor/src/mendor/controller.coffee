@@ -4,7 +4,7 @@
 class Controller
 	constructor: () ->
 		@routes = [
-			{"/workers/keepalive/:id"      http_method: "put",         method: "keep_alive"},
+			{"/workers/keepalive/:id",      http_method: "put",         method: "keep_alive"},
 			{"/worker/register",           http_method: "post",        method: "register_worker"},  
 			{"/employee",                  http_method: "get",         method: "employ_worker"},
 			{"/workers",                   http_method: "get",         method: "get_workers"}

@@ -3,7 +3,7 @@
 from factory.workers.login import login
 import base64
 import re
-import json
+import simplejson as json
 import binascii
 import urllib
 import urllib2
@@ -67,7 +67,7 @@ class weibologin(login):
         return uname, passwd
     
     def __real_login(self,content):
-        p = re.compile('location\.replace\(\"(.*?)\"\)')
+        p = re.compile('location\.replace\(\'(.*?)\'\)')
         login_url = p.search(content).group(1)
         result,ts = self.get_html(login_url, False)
         try:
@@ -84,7 +84,8 @@ class weibologin(login):
             else:
                 print 'ID is down!'#
                 return 0
-        except:
+        except Exception, e:
+            print e
             print 'big problem, research new login method'
             return 0
     

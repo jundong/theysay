@@ -11,7 +11,6 @@ from factory.supports.memdb import memdb
 def start_server():
 	try:
 		run(host="127.0.0.1", port=50050)
-		pass
 	except Exception, e:
 		print e
 		raise e	

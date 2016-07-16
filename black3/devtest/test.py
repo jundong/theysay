@@ -6,6 +6,7 @@ sys.path.append('../')
 
 from factory.supports.memdb import memdb
 from factory.managers.weibomanager import weibofollowmanager
+from factory.managers.weibomanager import weibominiblogmanager
 
 
 if __name__ == "__main__":

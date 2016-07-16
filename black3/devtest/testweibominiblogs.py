@@ -5,7 +5,9 @@ import sys
 sys.path.append('../')
 
 from factory.supports.memdb import memdb
+from factory.managers.weibomanager import weibofollowmanager
 from factory.managers.weibomanager import weibominiblogmanager
+
 if sys.getdefaultencoding() != "utf-8":
     reload(sys)
     sys.setdefaultencoding('utf-8')
